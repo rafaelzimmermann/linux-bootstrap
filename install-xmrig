@@ -1,0 +1,25 @@
+#!/bin/bash
+if [[ "x86_64" == "$(uname -p)" ]]; then
+    sudo apt install -y \
+        ubuntu-drivers-common \
+        wrmsr \
+        msr-tools
+fi
+
+NPROC=$(nproc)
+sudo apt install -y \
+    build-essential \
+    cmake \
+    libuv1-dev \
+    libssl-dev \
+    libhwloc-dev
+
+mkdir -p $HOME/workspace
+
+git clone https://github.com/xmrig/xmrig.git $HOME/workspace/xmrig
+
+mkdir -p $HOME/workspace/xmrig/build
+(cd $HOME/workspace/xmrig/scripts && sudo ./randomx_boost.sh)
+(cd $HOME/workspace/xmrig/scripts && sudo ./build_deps.sh)
+(cd $HOME/workspace/xmrig/build && cmake .. -DXMRIG_DEPS=scripts/deps)
+(cd $HOME/workspace/xmrig/build && make -j$NPROC)

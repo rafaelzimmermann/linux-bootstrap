@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -ex
+
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    exit 0
+fi
+
+
+mkdir -p /tmp/vscode
+
+wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -O /tmp/vscode/vscode.deb
+sudo apt install -y /tmp/vscode/vscode.deb
+
+rm -rf /tmp/vscode

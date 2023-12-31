@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -ex
+
+mkdir -p /tmp/monero
+
+if [[ "x86_64" = "$(uname -p)" ]]; then
+    wget "https://downloads.getmonero.org/cli/linux64" -O /tmp/monero/monero.tar.bz2
+elif [[ -n "$(cat /proc/cpuinfo | grep -i armv7)" ]]; then
+    wget "https://downloads.getmonero.org/cli/linuxarm7" -O /tmp/monero/monero.tar.bz2
+elif [[ -n "$(cat /proc/cpuinfo | grep -i armv8)" ]]; then
+    wget "https://downloads.getmonero.org/cli/linuxarm8" -O /tmp/monero/monero.tar.bz2
+fi
+
+tar -C /tmp/monero -xvf /tmp/monero/monero.tar.bz2
+
+rm -rf /tmp/monero

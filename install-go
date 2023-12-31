@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -ex
+
+VERSION="1.21.5"
+
+if [[ "x86_64" != "$(uname -p)" ]]; then
+    exit 0
+fi
+
+rm -rf /tmp/go
+mkdir /tmp/go
+
+wget "https://go.dev/dl/go${VERSION}.linux-amd64.tar.gz" -O "/tmp/go/go${VERSION}.linux-amd64.tar.gz"
+tar -C /tmp/go -xzf "/tmp/go/go${VERSION}.linux-amd64.tar.gz"
+
+mkdir -p $HOME/.local/bin
+mv /tmp/go/go/bin/* $HOME/.local/bin
+
+rm -rf /tmp/go

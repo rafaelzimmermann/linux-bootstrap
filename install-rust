@@ -1,0 +1,8 @@
+#!/bin/bash
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+echo "\n" >> $HOME/.zshrc
+echo "# RUST" >> $HOME/.zshrc
+echo "export PATH=$PATH:$HOME/.cargo/bin" >> $HOME/.zshrc
+echo "\n" >> $HOME/.zshrc
