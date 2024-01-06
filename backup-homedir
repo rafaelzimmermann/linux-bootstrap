@@ -1,0 +1,31 @@
+
+#!/bin/bash
+
+TARGET_USER=$1
+BACKUPDIR=$2
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+
+if [ -z "$TARGET_USER" ]; then
+    echo -e "Usage: $0 <TARGET_USER> <DESTINATION>"
+    echo -e "${RED}ERROR:${NC} Specify target user"
+    echo -e "                  Specify destination directory"
+
+    echo
+    exit 1
+fi
+
+
+if [ -z "$BACKUPDIR" ]; then
+    echo -e "Usage: $0 <TARGET_USER> <DESTINATION>"
+    echo -e "${RED}ERROR:${NC} Specify destination directory"
+    echo
+    exit 1
+fi
+
+sudo rsync -aP --exclude-from=config/rsync-homedir-local.txt /home/$TARGET_USER/ $BACKUPDIR/
+
+echo
+echo "Done"
+echo
