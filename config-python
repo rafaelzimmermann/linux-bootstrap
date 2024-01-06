@@ -5,6 +5,8 @@ mkdir -p $HOME/workspace/.envs
 pip3 install --break-system-packages virtualenv
 pip3 install --break-system-packages virtualenvwrapper
 
+source ~/.zshrc
+
 echo "" >> $HOME/.zshrc
 echo "# virtualenv config" >> $HOME/.zshrc
 echo "export WORKON_HOME=$HOME/workspace/.envs" >> $HOME/.zshrc
@@ -12,5 +14,3 @@ echo "export VIRTUALENVWRAPPER_PYTHON=$(which python3)" >> $HOME/.zshrc
 echo "export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)" >> $HOME/.zshrc
 echo "source $(which virtualenvwrapper.sh)" >> $HOME/.zshrc
 echo "" >> $HOME/.zshrc
-
-exec bash
