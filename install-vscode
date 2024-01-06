@@ -2,11 +2,6 @@
 
 set -ex
 
-if [ -d "$HOME/.oh-my-zsh" ]; then
-    exit 0
-fi
-
-
 mkdir -p /tmp/vscode
 
 wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -O /tmp/vscode/vscode.deb
