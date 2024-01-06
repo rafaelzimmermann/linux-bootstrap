@@ -20,3 +20,4 @@ bash install-ohmyzsh
 bash install-rust
 bash config-python
 bash config-tmux
+bash install-java
