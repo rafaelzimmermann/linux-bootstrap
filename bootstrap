@@ -16,6 +16,8 @@ sudo apt install -y \
     curl \
     zsh
 
+chsh -s /bin/zsh
+
 bash install-ohmyzsh
 bash install-rust
 bash config-python
