@@ -1,21 +1,13 @@
 #!/bin/bash
 
-
-git clone https://github.com/ryanoasis/nerd-fonts.git $HOME/workspace/nerd-fonts
-cd $HOME/workspace/nerd-fonts
-./install.sh
-cd $HOME
-
 rm -rf /tmp/nvim
 wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz -O /tmp/nvim-linux64.tar.gz
 tar -zxvf /tmp/nvim-linux64.tar.gz
 sudo mv nvim-linux64 /opt/nvim-linux64
 sudo chown -R /opt/nvim-linux64
 
-echo "" >> $HOME/.zshrc
-echo "# NVIM" >> $HOME/.zshrc
-echo "export PATH=\$PATH:/opt/nvim-linux64/bin" >> $HOME/.zshrc
+ln -s /opt/nvim-linux64/bin/nvim $HOME/.local/bin/nvim
 
 source $HOME/.zshrc
 
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1

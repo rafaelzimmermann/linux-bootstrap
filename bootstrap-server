@@ -1,27 +1,17 @@
 #!/bin/bash
 
-set -ex
-
-sudo apt update
+set -x
 
 sudo apt install -y \
     vim \
     htop \
     tmux \
     git \
-    python3-pip \
-    ruby-full \
-    samba \
     jq \
     curl \
     zsh
 
-chsh -s /bin/zsh
-
 bash install-ohmyzsh
-bash install-rust
-bash config-python
 bash config-tmux
-bash install-java
 bash install-nerdfonts
 bash install-nvim
