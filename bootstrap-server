@@ -13,5 +13,4 @@ sudo apt install -y \
 
 bash install-ohmyzsh
 bash config-tmux
-bash install-nerdfonts
 bash install-nvim
