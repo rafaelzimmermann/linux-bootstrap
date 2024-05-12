@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
+    cp config/robbyrussell.zsh-theme "${HOME}/.oh-my-zsh/themes/"
     exit 0
 fi
 
@@ -10,3 +11,4 @@ sudo apt install -y zsh curl
 export KEEP_ZSHRC="yes"
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+cp config/robbyrussell.zsh-theme "${HOME}/.oh-my-zsh/themes/"
