@@ -25,3 +25,6 @@ bash config-tmux
 bash install-java
 bash install-nerdfonts
 bash install-nvim
+
+cp -r .config "${HOME}"
+

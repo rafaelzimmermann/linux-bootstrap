@@ -1,0 +1,21 @@
+# Style
+keybind = ctrl+s>equal=increase_font_size:1
+keybind = ctrl+s>minus=decrease_font_size:1
+keybind = ctrl+s>zero=reset_font_size
+
+# Text operations
+keybind = ctrl+s>r=clear_screen
+
+# Window manipulation
+keybind = ctrl+s>n=new_window
+keybind = ctrl+s>v=new_split:right
+keybind = ctrl+s>h=new_split:down
+
+keybind = ctrl+s>w=goto_split:top
+keybind = ctrl+s>s=goto_split:bottom
+keybind = ctrl+s>d=goto_split:right
+keybind = ctrl+s>a=goto_split:left
+
+# Control
+keybind = ctrl+s>x=quit
+
