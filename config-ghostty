@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp config/ghostty/zsh-config $HOME/.config/ghostty/
+
+echo "config-file = zsh-config" >> $HOME/.config/ghostty/config
+
