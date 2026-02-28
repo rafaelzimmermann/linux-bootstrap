@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+source "$(dirname "$0")/lib/pkg.sh"
+
+if [ "$OS" != "arch" ]; then
+    echo "yay is only needed on Arch Linux, skipping."
+    exit 0
+fi
+
+pkg_install base-devel git
+
+YAY_TMP=$(mktemp -d)
+trap "rm -rf $YAY_TMP" EXIT
+git clone https://aur.archlinux.org/yay.git "$YAY_TMP"
+(cd "$YAY_TMP" && makepkg -si --noconfirm)

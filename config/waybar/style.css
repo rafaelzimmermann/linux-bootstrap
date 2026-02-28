@@ -1,0 +1,85 @@
+* {
+    font-family: "FiraCode Nerd Font", "Font Awesome 6 Free", "Symbols Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(26, 27, 38, 0.92);
+    border-bottom: 2px solid rgba(122, 162, 247, 0.4);
+    color: #c0caf5;
+}
+
+.modules-left, .modules-center, .modules-right {
+    padding: 0 8px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    background-color: transparent;
+    color: #565f89;
+    border-radius: 4px;
+    margin: 4px 2px;
+}
+
+#workspaces button.active {
+    color: #7aa2f7;
+    background-color: rgba(122, 162, 247, 0.15);
+}
+
+#workspaces button.urgent {
+    color: #f7768e;
+    background-color: rgba(247, 118, 142, 0.15);
+}
+
+#workspaces button:hover {
+    background-color: rgba(122, 162, 247, 0.1);
+    color: #c0caf5;
+}
+
+#window {
+    color: #9ece6a;
+    font-style: italic;
+}
+
+#clock {
+    color: #e0af68;
+    font-weight: bold;
+}
+
+#wireplumber {
+    color: #bb9af7;
+}
+
+#wireplumber.muted {
+    color: #565f89;
+}
+
+#network {
+    color: #7aa2f7;
+}
+
+#network.disconnected {
+    color: #f7768e;
+}
+
+#bluetooth {
+    color: #2ac3de;
+}
+
+#bluetooth.connected {
+    color: #7dcfff;
+}
+
+#tray {
+    padding: 0 4px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #f7768e;
+}

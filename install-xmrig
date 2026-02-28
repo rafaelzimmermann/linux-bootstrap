@@ -1,18 +1,25 @@
 #!/bin/bash
-if [[ "x86_64" == "$(uname -p)" ]]; then
-    sudo apt install -y \
-        ubuntu-drivers-common \
-        wrmsr \
-        msr-tools
-fi
+
+set -e
+
+source "$(dirname "$0")/lib/pkg.sh"
+
+case "$OS" in
+    arch)
+        if [[ "x86_64" == "$(uname -p)" ]]; then
+            aur_install msr-tools
+        fi
+        pkg_install base-devel cmake libuv openssl hwloc
+        ;;
+    *)
+        if [[ "x86_64" == "$(uname -p)" ]]; then
+            pkg_install ubuntu-drivers-common msr-tools
+        fi
+        pkg_install build-essential cmake libuv1-dev libssl-dev libhwloc-dev
+        ;;
+esac
 
 NPROC=$(nproc)
-sudo apt install -y \
-    build-essential \
-    cmake \
-    libuv1-dev \
-    libssl-dev \
-    libhwloc-dev
 
 mkdir -p $HOME/workspace
 

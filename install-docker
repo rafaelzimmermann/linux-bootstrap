@@ -2,29 +2,40 @@
 
 set -e
 
-# Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install -y ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
+source "$(dirname "$0")/lib/pkg.sh"
 
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
+case "$OS" in
+    arch)
+        pkg_install docker docker-compose
+        ;;
+    *)
+        # Add Docker's official GPG key:
+        sudo apt-get update
+        sudo apt-get install -y ca-certificates curl gnupg
+        sudo install -m 0755 -d /etc/apt/keyrings
 
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        # Add the repository to Apt sources:
+        echo \
+          "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+          $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+          sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+        sudo apt-get update
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        ;;
+esac
 
 # Config user access
-newgrp docker
-user=$USER
-sudo usermod -aG docker "${user}"
-
+# newgrp would spawn a subshell here, blocking the rest of the script.
+# A full logout/login is required for group membership to take effect.
+sudo usermod -aG docker "$USER"
+echo "Please log out and back in for docker group membership to take effect."
 
 # Start on boot
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
+sudo systemctl enable docker.service || { echo "Failed to enable docker.service" >&2; exit 1; }
+sudo systemctl enable containerd.service || { echo "Failed to enable containerd.service" >&2; exit 1; }
+sudo systemctl start docker.service || { echo "Failed to start docker.service" >&2; exit 1; }
+sudo systemctl start containerd.service || { echo "Failed to start containerd.service" >&2; exit 1; }
