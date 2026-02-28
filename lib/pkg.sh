@@ -12,14 +12,14 @@ detect_os() {
 
 pkg_update() {
     case "$OS" in
-        arch) sudo pacman -Sy ;;
+        arch) sudo pacman -Syu --noconfirm ;;
         *)    sudo apt update ;;
     esac
 }
 
 pkg_install() {
     case "$OS" in
-        arch) sudo pacman -S --noconfirm "$@" ;;
+        arch) sudo pacman -S --noconfirm --needed "$@" ;;
         *)    sudo apt install -y "$@" ;;
     esac
 }
