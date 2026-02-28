@@ -8,7 +8,7 @@ source "$(dirname "$0")/lib/pkg.sh"
 sudo -v
 while true; do sudo -v; sleep 50; done &
 SUDO_KEEPALIVE=$!
-trap "kill $SUDO_KEEPALIVE" EXIT
+trap "kill $SUDO_KEEPALIVE 2>/dev/null || true" EXIT
 
 pkg_update
 

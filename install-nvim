@@ -13,8 +13,9 @@ case "$OS" in
         sudo mv nvim-linux64 /opt/nvim-linux64
         sudo chown -R /opt/nvim-linux64
         ln -s /opt/nvim-linux64/bin/nvim $HOME/.local/bin/nvim
-        source $HOME/.zshrc
         ;;
 esac
+
+source $HOME/.zshrc
 
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1

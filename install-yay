@@ -11,6 +11,7 @@ fi
 
 pkg_install base-devel git
 
-git clone https://aur.archlinux.org/yay.git
-trap 'rm -rf yay' EXIT
-(cd yay && makepkg -si --noconfirm)
+YAY_TMP=$(mktemp -d)
+trap "rm -rf $YAY_TMP" EXIT
+git clone https://aur.archlinux.org/yay.git "$YAY_TMP"
+(cd "$YAY_TMP" && makepkg -si --noconfirm)

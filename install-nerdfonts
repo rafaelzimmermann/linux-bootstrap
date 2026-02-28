@@ -11,7 +11,8 @@ case "$OS" in
         ;;
 esac
 
-git clone https://github.com/ryanoasis/nerd-fonts.git
-trap 'rm -rf nerd-fonts' EXIT
-(cd nerd-fonts; bash install.sh)
+NERD_FONTS_TMP=$(mktemp -d)
+trap "rm -rf $NERD_FONTS_TMP" EXIT
+git clone https://github.com/ryanoasis/nerd-fonts.git "$NERD_FONTS_TMP"
+(cd "$NERD_FONTS_TMP" && bash install.sh)
 fc-cache -f -v
