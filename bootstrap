@@ -9,6 +9,7 @@ pkg_update
 case "$OS" in
     arch)
         pkg_install vim htop tmux git python-pip ruby samba jq curl zsh
+        bash install-yay
         ;;
     *)
         pkg_install vim htop tmux git python3-pip ruby-full samba jq curl zsh
