@@ -14,7 +14,7 @@ pkg_update
 
 case "$OS" in
     arch)
-        pkg_install vim htop tmux git python-pip ruby samba jq curl zsh
+        pkg_install vim htop tmux git python-pip ruby samba jq curl zsh inetutils
         bash install-yay
         ;;
     *)
