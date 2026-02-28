@@ -2,14 +2,9 @@
 
 set -x
 
-sudo apt install -y \
-    vim \
-    htop \
-    tmux \
-    git \
-    jq \
-    curl \
-    zsh
+source "$(dirname "$0")/lib/pkg.sh"
+
+pkg_install vim htop tmux git jq curl zsh
 
 bash install-ohmyzsh
 bash config-tmux

@@ -1,12 +1,13 @@
 #!/bin/bash
 
+source "$(dirname "$0")/lib/pkg.sh"
+
 if [ -d "$HOME/.oh-my-zsh" ]; then
     cp config/robbyrussell.zsh-theme "${HOME}/.oh-my-zsh/themes/"
     exit 0
 fi
 
-
-sudo apt install -y zsh curl
+pkg_install zsh curl
 
 export KEEP_ZSHRC="yes"
 # Install oh-my-zsh

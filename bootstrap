@@ -2,19 +2,18 @@
 
 set -ex
 
-sudo apt update
+source "$(dirname "$0")/lib/pkg.sh"
 
-sudo apt install -y \
-    vim \
-    htop \
-    tmux \
-    git \
-    python3-pip \
-    ruby-full \
-    samba \
-    jq \
-    curl \
-    zsh
+pkg_update
+
+case "$OS" in
+    arch)
+        pkg_install vim htop tmux git python-pip ruby samba jq curl zsh
+        ;;
+    *)
+        pkg_install vim htop tmux git python3-pip ruby-full samba jq curl zsh
+        ;;
+esac
 
 chsh -s /bin/zsh
 
@@ -27,4 +26,3 @@ bash install-nerdfonts
 bash install-nvim
 
 cp -r .config "${HOME}"
-

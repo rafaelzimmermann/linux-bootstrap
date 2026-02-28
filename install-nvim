@@ -1,13 +1,20 @@
 #!/bin/bash
 
-rm -rf /tmp/nvim
-wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz -O /tmp/nvim-linux64.tar.gz
-tar -zxvf /tmp/nvim-linux64.tar.gz
-sudo mv nvim-linux64 /opt/nvim-linux64
-sudo chown -R /opt/nvim-linux64
+source "$(dirname "$0")/lib/pkg.sh"
 
-ln -s /opt/nvim-linux64/bin/nvim $HOME/.local/bin/nvim
-
-source $HOME/.zshrc
+case "$OS" in
+    arch)
+        pkg_install neovim
+        ;;
+    *)
+        rm -rf /tmp/nvim
+        wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz -O /tmp/nvim-linux64.tar.gz
+        tar -zxvf /tmp/nvim-linux64.tar.gz
+        sudo mv nvim-linux64 /opt/nvim-linux64
+        sudo chown -R /opt/nvim-linux64
+        ln -s /opt/nvim-linux64/bin/nvim $HOME/.local/bin/nvim
+        source $HOME/.zshrc
+        ;;
+esac
 
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1

@@ -2,9 +2,16 @@
 
 set -ex
 
-mkdir -p /tmp/vscode
+source "$(dirname "$0")/lib/pkg.sh"
 
-wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -O /tmp/vscode/vscode.deb
-sudo apt install -y /tmp/vscode/vscode.deb
-
-rm -rf /tmp/vscode
+case "$OS" in
+    arch)
+        aur_install visual-studio-code-bin
+        ;;
+    *)
+        mkdir -p /tmp/vscode
+        wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -O /tmp/vscode/vscode.deb
+        sudo apt install -y /tmp/vscode/vscode.deb
+        rm -rf /tmp/vscode
+        ;;
+esac

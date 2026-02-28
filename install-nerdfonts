@@ -1,6 +1,8 @@
 #!/bin/bash
 
-sudo apt install -y fontconfig
+source "$(dirname "$0")/lib/pkg.sh"
+
+pkg_install fontconfig
 
 git clone https://github.com/ryanoasis/nerd-fonts.git
 $(cd nerd-fonts; bash install.sh)
