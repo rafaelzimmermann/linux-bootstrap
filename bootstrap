@@ -16,6 +16,7 @@ case "$OS" in
     arch)
         pkg_install vim htop tmux git python-pip ruby samba jq curl zsh inetutils
         bash install-yay
+        bash config-nvidia
         ;;
     *)
         pkg_install vim htop tmux git python3-pip ruby-full samba jq curl zsh
