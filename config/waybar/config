@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["wireplumber", "network", "bluetooth", "tray"],
+    "modules-right": ["temperature", "custom/gpu-temp", "wireplumber", "network", "bluetooth", "tray"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -29,6 +29,22 @@
         "format": " {:%H:%M}",
         "format-alt": " {:%Y-%m-%d %H:%M:%S}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
+        "critical-threshold": 80,
+        "format": "󰍛 {temperatureC}°C",
+        "format-critical": "󰍛 {temperatureC}°C",
+        "tooltip": false
+    },
+
+    "custom/gpu-temp": {
+        "exec": "~/.config/waybar/gpu-temp.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "󰾲 {}",
+        "tooltip": false
     },
 
     "wireplumber": {

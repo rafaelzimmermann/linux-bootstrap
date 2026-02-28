@@ -6,3 +6,4 @@ command -v wireplumber &>/dev/null || audio="pulseaudio"
 mkdir -p $HOME/.config/waybar
 sed "s/wireplumber/$audio/g" config/waybar/config > $HOME/.config/waybar/config
 sed "s/wireplumber/$audio/g" config/waybar/style.css > $HOME/.config/waybar/style.css
+install -m 755 config/waybar/gpu-temp.sh $HOME/.config/waybar/gpu-temp.sh

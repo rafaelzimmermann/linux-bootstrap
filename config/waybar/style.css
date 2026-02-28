@@ -47,6 +47,22 @@ window#waybar {
     font-weight: bold;
 }
 
+#temperature {
+    color: #73daca;
+}
+
+#temperature.critical {
+    color: #f7768e;
+}
+
+#custom-gpu-temp {
+    color: #73daca;
+}
+
+#custom-gpu-temp.critical {
+    color: #f7768e;
+}
+
 #wireplumber {
     color: #bb9af7;
 }
