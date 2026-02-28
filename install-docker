@@ -33,5 +33,5 @@ sudo usermod -aG docker "$USER"
 echo "Please log out and back in for docker group membership to take effect."
 
 # Start on boot
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
+sudo systemctl enable --now docker.service
+sudo systemctl enable --now containerd.service
