@@ -4,6 +4,12 @@ set -ex
 
 source "$(dirname "$0")/lib/pkg.sh"
 
+# Ask for sudo once and keep the credential alive for the duration of the script
+sudo -v
+while true; do sudo -v; sleep 50; done &
+SUDO_KEEPALIVE=$!
+trap "kill $SUDO_KEEPALIVE" EXIT
+
 pkg_update
 
 case "$OS" in
