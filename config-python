@@ -1,14 +1,3 @@
 #!/bin/bash
 
-mkdir -p $HOME/workspace/.envs
-
-pip3 install virtualenv --break-system-packages
-pip3 install virtualenvwrapper --break-system-packages
-
-echo "" >> $HOME/.zshrc
-echo "# virtualenv config" >> $HOME/.zshrc
-echo "export WORKON_HOME=$HOME/workspace/.envs" >> $HOME/.zshrc
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $HOME/.zshrc
-echo "export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv" >> $HOME/.zshrc
-echo "source $HOME/.local/bin/virtualenvwrapper.sh" >> $HOME/.zshrc
-echo "" >> $HOME/.zshrc
+curl -LsSf https://astral.sh/uv/install.sh | sh
