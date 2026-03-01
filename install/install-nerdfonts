@@ -7,9 +7,27 @@ pkg_install fontconfig
 # Install icon fonts (OS-specific package names)
 case "$OS" in
     arch)
-        sudo pacman -S --needed --noconfirm ttf-font-awesome
+        sudo pacman -S --needed --noconfirm ttf-font-awesome noto-fonts-emoji
         ;;
 esac
+
+# Configure fontconfig for Noto Color Emoji
+mkdir -p ~/.config/fontconfig
+FONTS_CONF=~/.config/fontconfig/fonts.conf
+if [ ! -f "$FONTS_CONF" ]; then
+    cat > "$FONTS_CONF" <<'EOF'
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <alias>
+    <family>monospace</family>
+    <prefer><family>Noto Color Emoji</family></prefer>
+  </alias>
+</fontconfig>
+EOF
+elif ! grep -q "Noto Color Emoji" "$FONTS_CONF"; then
+    sed -i 's|</fontconfig>|  <alias>\n    <family>monospace</family>\n    <prefer><family>Noto Color Emoji</family></prefer>\n  </alias>\n</fontconfig>|' "$FONTS_CONF"
+fi
 
 NERD_FONTS_TMP=$(mktemp -d)
 trap "rm -rf $NERD_FONTS_TMP" EXIT
