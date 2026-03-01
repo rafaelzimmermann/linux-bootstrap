@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -e
+
+source "$(dirname "$0")/../lib/pkg.sh"
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+step()    { echo -e "${CYAN}==> $*${NC}"; }
+success() { echo -e "${GREEN}✓ $*${NC}"; }
+fail()    { echo -e "${RED}✗ $*${NC}" >&2; exit 1; }
+
+if [ "$OS" != "arch" ]; then
+    fail "This script only supports Arch Linux."
+fi
+
+# Install Steam
+step "Installing Steam..."
+pkg_install steam
+success "Steam installed."
+
+# Add Nvidia Wayland env vars to hyprland.conf
+HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
+
+NVIDIA_BLOCK="# Nvidia Wayland
+env = LIBVA_DRIVER_NAME,nvidia
+env = XDG_SESSION_TYPE,wayland
+env = GBM_BACKEND,nvidia-drm
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+env = NVD_BACKEND,direct"
+
+step "Configuring Nvidia Wayland env vars in $HYPR_CONF..."
+
+if [ ! -f "$HYPR_CONF" ]; then
+    fail "$HYPR_CONF not found. Run config-hyprland first."
+fi
+
+if grep -qF '# Nvidia Wayland' "$HYPR_CONF"; then
+    success "Nvidia Wayland env vars already present, skipping."
+else
+    printf '\n%s\n' "$NVIDIA_BLOCK" >> "$HYPR_CONF"
+    success "Nvidia Wayland env vars added to $HYPR_CONF."
+fi

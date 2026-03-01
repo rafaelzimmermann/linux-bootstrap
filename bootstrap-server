@@ -6,9 +6,9 @@ source "$(dirname "$0")/lib/pkg.sh"
 
 pkg_install vim htop tmux git jq curl zsh
 
-bash install-ohmyzsh
-bash config-tmux
-bash install-nvim
+bash "$(dirname "$0")/install/install-ohmyzsh"
+bash "$(dirname "$0")/config/config-tmux"
+bash "$(dirname "$0")/install/install-nvim"
 
 # Prevent server from going into sleep mode
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target

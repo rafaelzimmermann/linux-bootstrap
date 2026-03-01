@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-source "$(dirname "$0")/lib/pkg.sh"
+source "$(dirname "$0")/../lib/pkg.sh"
 
 if [ "$OS" != "arch" ]; then
     echo "Hyprland configuration is only supported on Arch Linux."
@@ -17,6 +17,6 @@ pkg_install hyprland hypridle hyprlock hyprpaper \
 yay -S --needed --noconfirm hyprlauncher
 
 mkdir -p "$HOME/.config/hypr"
-cp -r "$(dirname "$0")/config/dotconfig/hypr/." "$HOME/.config/hypr/"
+cp -r "$(dirname "$0")/assets/dotconfig/hypr/." "$HOME/.config/hypr/"
 
 bash "$(dirname "$0")/config-waybar"

@@ -24,7 +24,7 @@ if [ -z "$BACKUPDIR" ]; then
     exit 1
 fi
 
-sudo rsync -aP --exclude-from=config/rsync-homedir-local.txt /home/$TARGET_USER/ $BACKUPDIR/
+sudo rsync -aP --exclude-from="$(dirname "$0")/assets/rsync-homedir-local.txt" /home/$TARGET_USER/ $BACKUPDIR/
 
 echo
 echo "Done"

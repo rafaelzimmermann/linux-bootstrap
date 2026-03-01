@@ -15,9 +15,9 @@ pkg_update
 case "$OS" in
     arch)
         pkg_install vim htop tmux git python-pip ruby samba jq curl zsh inetutils
-        bash install-yay
-        bash config-nvidia
-        bash config-hyprland
+        bash "$(dirname "$0")/install/install-yay"
+        bash "$(dirname "$0")/config/config-nvidia"
+        bash "$(dirname "$0")/config/config-hyprland"
         ;;
     *)
         pkg_install vim htop tmux git python3-pip ruby-full samba jq curl zsh
@@ -26,12 +26,12 @@ esac
 
 chsh -s /bin/zsh
 
-bash install-ohmyzsh
-bash install-rust
-bash config-python
-bash config-tmux
-bash install-java
-bash install-nerdfonts
-bash install-nvim
+bash "$(dirname "$0")/install/install-ohmyzsh"
+bash "$(dirname "$0")/install/install-rust"
+bash "$(dirname "$0")/config/config-python"
+bash "$(dirname "$0")/config/config-tmux"
+bash "$(dirname "$0")/install/install-java"
+bash "$(dirname "$0")/install/install-nerdfonts"
+bash "$(dirname "$0")/install/install-nvim"
 
-cp -r config/dotconfig/. "${HOME}/.config"
+cp -r "$(dirname "$0")/config/assets/dotconfig/." "${HOME}/.config"
