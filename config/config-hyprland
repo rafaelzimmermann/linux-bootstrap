@@ -13,9 +13,8 @@ pkg_install hyprland hypridle hyprlock hyprpaper \
     blueman playerctl brightnessctl \
     dolphin
 
-# hyprlauncher is AUR-only
-yay -S --needed --noconfirm hyprlauncher
-
+echo "→ Installing trebuchet..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/rafaelzimmermann/trebuchet/main/scripts/install.sh)"
 mkdir -p "$HOME/.config/hypr"
 cp -r "$(dirname "$0")/assets/dotconfig/hypr/." "$HOME/.config/hypr/"
 
