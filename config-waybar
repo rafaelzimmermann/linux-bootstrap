@@ -1,9 +1,13 @@
 #!/bin/bash
+set -e
 
-audio="wireplumber"
-command -v wireplumber &>/dev/null || audio="pulseaudio"
+REPO="https://github.com/rafaelzimmermann/waybar-theme"
 
-mkdir -p $HOME/.config/waybar
-sed "s/wireplumber/$audio/g" config/waybar/config > $HOME/.config/waybar/config
-sed "s/wireplumber/$audio/g" config/waybar/style.css > $HOME/.config/waybar/style.css
-install -m 755 config/waybar/gpu-temp.sh $HOME/.config/waybar/gpu-temp.sh
+TMPDIR="$(mktemp -d)"
+trap 'rm -rf "$TMPDIR"' EXIT
+
+echo "→ Cloning waybar-theme..."
+git clone --depth 1 "$REPO" "$TMPDIR"
+
+echo "→ Running install..."
+bash "$TMPDIR/install.sh"
