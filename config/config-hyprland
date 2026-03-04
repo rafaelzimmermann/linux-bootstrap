@@ -13,9 +13,16 @@ pkg_install hyprland hypridle hyprlock hyprpaper \
     blueman playerctl brightnessctl \
     dolphin
 
-echo "→ Installing trebuchet..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/rafaelzimmermann/trebuchet/main/scripts/install.sh)"
+if confirm "Install trebuchet?"; then
+    echo "→ Installing trebuchet..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/rafaelzimmermann/trebuchet/main/scripts/install.sh)"
+fi
+
 mkdir -p "$HOME/.config/hypr"
 cp -r "$(dirname "$0")/assets/dotconfig/hypr/." "$HOME/.config/hypr/"
 
 bash "$(dirname "$0")/config-waybar"
+
+pkill waybar || true
+hyprctl reload
+waybar &

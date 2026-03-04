@@ -28,4 +28,11 @@ aur_install() {
     yay -S --noconfirm "$@"
 }
 
+confirm() {
+    local reply
+    read -r -n 1 -p "$1 [y/N] " reply
+    echo ""
+    [[ "${reply,,}" == "y" ]]
+}
+
 detect_os
