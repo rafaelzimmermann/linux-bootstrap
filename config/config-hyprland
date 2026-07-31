@@ -20,6 +20,9 @@ fi
 
 mkdir -p "$HOME/.config/hypr"
 cp -r "$(dirname "$0")/assets/dotconfig/hypr/." "$HOME/.config/hypr/"
+# The legacy hyprland.conf format is deprecated (removed in Hyprland 0.57) in
+# favour of hyprland.lua. Remove any stale copy so the lua config is used.
+rm -f "$HOME/.config/hypr/hyprland.conf"
 
 bash "$(dirname "$0")/config-waybar"
 
