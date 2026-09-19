@@ -16,9 +16,9 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({ output = "DP-1",     mode = "1920x1080@60", position = "0x0",    scale = 1 })
-hl.monitor({ output = "HDMI-A-1", mode = "3440x1440@85", position = "1920x0", scale = 1 })
-hl.monitor({ output = "DP-2",     mode = "3840x2160@59", position = "5360x0", scale = 1 })
+hl.monitor({ output = "DP-1",     mode = "3840x2160@60", position = "3440x0", scale = 1 })
+hl.monitor({ output = "HDMI-A-1", mode = "3440x1440@85", position = "0x0",    scale = 1 })
+hl.monitor({ output = "DP-2",     mode = "3840x2160@59", position = "7280x0", scale = 1 })
 
 -------------------
 ---- AUTOSTART ----
@@ -152,12 +152,12 @@ local function workspace_rule(rule)
 end
 
 for _, r in ipairs({
-    { workspace = "1", monitor = "DP-1"     },
-    { workspace = "2", monitor = "DP-1"     },
-    { workspace = "3", monitor = "DP-1"     },
-    { workspace = "4", monitor = "HDMI-A-1" },
-    { workspace = "5", monitor = "HDMI-A-1" },
-    { workspace = "6", monitor = "HDMI-A-1" },
+    { workspace = "1", monitor = "HDMI-A-1" },
+    { workspace = "2", monitor = "HDMI-A-1" },
+    { workspace = "3", monitor = "HDMI-A-1" },
+    { workspace = "4", monitor = "DP-1" },
+    { workspace = "5", monitor = "DP-1" },
+    { workspace = "6", monitor = "DP-1" },
     { workspace = "7", monitor = "DP-2"     },
     { workspace = "8", monitor = "DP-2"     },
     { workspace = "9", monitor = "DP-2"     },
