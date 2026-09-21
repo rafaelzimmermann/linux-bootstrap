@@ -64,8 +64,18 @@ Config scripts deploy dotfiles to their expected locations under `~/.config/`.
 |--------|---------|
 | `config-ghostty` | `~/.config/ghostty/` |
 | `config-python` | virtualenv + virtualenvwrapper setup in `~/.zshrc` |
-| `config-tmux` | `~/.tmux.conf` + TPM plugin manager |
+| `config-tmux` | `~/.tmux.conf` + TPM plugin manager + project/branch window-name helper |
 | `config-waybar` | `~/.config/waybar/` (auto-detects wireplumber vs pulseaudio) |
+
+Run `./config/config-tmux` to install the tmux configuration. It uses **Ctrl+B**
+as the prefix, supports mouse selection and pane resizing, and shows the current
+directory and Git branch in window names. The status label and active pane border
+turn yellow while the prefix is active. Press **Ctrl+B**, then **r** to reload.
+
+TPM, tmux-sensible, and the Dracula theme remain configured, including CPU, GPU,
+and RAM widgets. After starting tmux, press **Ctrl+B**, then **Shift+I** to install
+the plugins. Until they are installed, a built-in status layout is used. Extended
+key settings are skipped on tmux versions that do not support them.
 
 ## Utilities
 

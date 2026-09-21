@@ -1,8 +1,17 @@
 #!/bin/bash
+set -euo pipefail
 
-rm -rf ~/.tmux/plugins/tpm
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+assets_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/assets" && pwd)"
 
-cp "$(dirname "$0")/assets/.tmux.conf" $HOME
+# Preserve existing plugins when the bootstrap is run again.
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
 
-tmux source $HOME/.tmux.conf
+install -d "$HOME/.tmux"
+install -m 755 "$assets_dir/tmux/window-name.sh" "$HOME/.tmux/window-name.sh"
+install -m 644 "$assets_dir/.tmux.conf" "$HOME/.tmux.conf"
+
+if tmux list-sessions >/dev/null 2>&1; then
+  tmux source-file "$HOME/.tmux.conf"
+fi
